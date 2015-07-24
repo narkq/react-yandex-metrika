@@ -38,13 +38,7 @@ ymAsyncProxy.init = function init(accounts, options = {}) {
     window[a] = window[a].concat(accounts);
     window[c].push(() => {
         window[a].forEach(id => {
-            let defaultOptions = {
-                id,
-                clickmap: true,
-                trackLinks: true,
-                accurateTrackBounce: true,
-                webvisor: true
-            };
+            let defaultOptions = {id};
 
             try {
                 window[`yaCounter${id}`] = new Ya.Metrika(
