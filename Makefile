@@ -5,6 +5,7 @@ TESTS = $(wildcard tests/*.js)
 
 BABEL_OPTS = \
 	--stage 0 \
+	--optional=runtime \
 	--source-maps-inline
 
 build: $(LIB)
