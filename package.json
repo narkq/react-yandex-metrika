@@ -1,0 +1,24 @@
+{
+  "name": "react-yandex-metrika",
+  "version": "1.0.0",
+  "description": "Yandex Metrika component for React",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-component",
+    "react",
+    "yandex-metrika",
+    "component"
+  ],
+  "author": "Alex Sladkov <sladkov@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^4.7.16",
+    "babel-eslint": "^3.1.26",
+    "eslint": "^0.23.0",
+    "eslint-plugin-react": "^2.7.1",
+    "react": "^0.13.3"
+  }
+}
