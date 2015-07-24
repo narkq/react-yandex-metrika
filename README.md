@@ -29,8 +29,22 @@ Also, you need to initialize the tracker object once:
 
 ```javascript
 // This is supposed to be executed only in browser and only once.
-// If you specify several tracker ids, each event will be sent to all of them.
+// Because of that, the most sensible place for this code is right after you javascript bundle.
 ym.init([987654321]);
+```
+
+You can create several identical trackers (that might be useful for domain-wise segmentation):
+
+```javascript
+// If you specify several tracker ids, each event will be sent to all of them.
+ym.init([98765, 4321]);
+```
+
+You can specify options for tracker (as described in [Yandex.Metrika documentation](https://help.yandex.ru/metrika/objects/creating-object.xml)):
+
+```javascript
+// by default this library specifies only tracker id
+ym.init([987654321], {defer: true});
 ```
 
 Elsewhere, use the `ym` function:
