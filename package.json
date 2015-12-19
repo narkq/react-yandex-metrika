@@ -18,11 +18,14 @@
   ],
   "author": "Alex Sladkov <sladkov@gmail.com>",
   "license": "MIT",
+  "dependencies": {
+    "babel-runtime": "^5.7.0"
+  },
   "devDependencies": {
-    "babel": "^4.7.16",
-    "babel-eslint": "^3.1.26",
-    "eslint": "^0.23.0",
-    "eslint-plugin-react": "^2.7.1",
+    "babel": "^5.7.0",
+    "babel-eslint": "^4.1.0",
+    "eslint": "^1.10.0",
+    "eslint-plugin-react": "^3.11.1",
     "react": "^0.13.3"
   },
   "peerDependencies": {
