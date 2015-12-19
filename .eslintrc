@@ -23,7 +23,7 @@
         "key-spacing": [2, {"beforeColon": false, "afterColon": true}],
         "quote-props": [2, "as-needed"],
         "max-len": [2, 120, 4], // allExcept: ["urlComments"] from jscs is not implemented
-        "spaced-line-comment": [2, "always"],
+        "spaced-comment": [2, "always"],
         "eol-last": 2,
         "no-multiple-empty-lines": [2, {"max": 1}],
         "no-mixed-spaces-and-tabs": 2,

@@ -12,7 +12,7 @@ function ymProxy(methodName, ...args) {
     window[a].forEach(id => {
         try {
             window[`yaCounter${id}`][methodName](...args);
-        } catch(ex) {
+        } catch (ex) {
             console.warn(ex);
         }
     });
@@ -44,7 +44,7 @@ ymAsyncProxy.init = function init(accounts, options = {}) {
                 window[`yaCounter${id}`] = new Ya.Metrika(
                     Object.assign(defaultOptions, options)
                 );
-            } catch(ex) {
+            } catch (ex) {
                 console.warn(ex);
             }
         });
