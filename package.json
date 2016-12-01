@@ -1,6 +1,6 @@
 {
   "name": "react-yandex-metrika",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Yandex Metrika component for React",
   "main": "./lib/index.js",
   "scripts": {
