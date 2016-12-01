@@ -55,6 +55,7 @@ if (isBrowser) {
     window[c] = window[c] || [];
     window[a] = window[a] || [];
     window.ym = ymAsyncProxy;
+    ym.init = ymAsyncProxy.init;
 }
 
 export default ym;
