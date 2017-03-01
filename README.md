@@ -32,7 +32,7 @@ var MyComponent = React.createClass({
     return (
       <YM>
         // JSX
-      <YM />
+      </YM>
     );
   }
 });
