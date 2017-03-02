@@ -18,6 +18,6 @@ export default React.createClass({
     },
 
     render() {
-        return script(null);
+        return this.props.children || script(null);
     }
 });

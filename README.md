@@ -10,8 +10,9 @@ Usage:
 
 ```javascript
 import {Initializer as YM} from 'react-yandex-metrika';
-
-// Use the initializer to add the script to your page somewhere.
+```
+Use the initializer to add the script to your page somewhere:
+```javascript
 var MyComponent = React.createClass({
   render: function() {
     return (
@@ -20,6 +21,18 @@ var MyComponent = React.createClass({
           <YM />
         // SNIP
       </div>
+    );
+  }
+});
+```
+OR
+```javascript
+var MyComponent = React.createClass({
+  render: function() {
+    return (
+      <YM>
+        // JSX
+      </YM>
     );
   }
 });
