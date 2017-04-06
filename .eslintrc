@@ -2,7 +2,7 @@
     "parser": "babel-eslint",
     "rules": {
         "curly": [2],
-        "space-after-keywords": [2, "always"],
+        "keyword-spacing": [2, {"before": true, "after": true}],
         "no-with": 2,
         "brace-style": [2, "1tbs"],
         "space-unary-ops": [2, {"words": true, "nonwords": false}],
