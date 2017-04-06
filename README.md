@@ -8,56 +8,35 @@ Inspired by and shamelessly copied from [react-google-analytics](https://github.
 
 Usage:
 
-```javascript
-import {Initializer as YM} from 'react-yandex-metrika';
-```
 Use the initializer to add the script to your page somewhere:
 ```javascript
-var MyComponent = React.createClass({
-  render: function() {
+import { YMInitializer } from 'react-yandex-metrika';
+
+class MyComponent extends React.Component {
+  render() {
     return (
       <div>
         // SNIP
-          <YM />
+          <YMInitializer accounts={[987654321]} />
         // SNIP
       </div>
     );
   }
 });
 ```
-OR
+
+Please note that you need to initialize the tracker object only once.
+Because of that, you should insert initializer to the place where it won't be remounted (that means at least outside of router scope).
+
+
+You can create several identical trackers (that might be useful for domain-wise segmentation).
 ```javascript
-var MyComponent = React.createClass({
-  render: function() {
-    return (
-      <YM>
-        // JSX
-      </YM>
-    );
-  }
-});
+<YMInitializer accounts={[98765, 4321]} />
 ```
 
-Also, you need to initialize the tracker object once:
-
+You can also specify options for tracker (as described in [Yandex.Metrika documentation](https://help.yandex.ru/metrika/objects/creating-object.xml)):
 ```javascript
-// This is supposed to be executed only in browser and only once.
-// Because of that, the most sensible place for this code is right after you javascript bundle.
-ym.init([987654321]);
-```
-
-You can create several identical trackers (that might be useful for domain-wise segmentation):
-
-```javascript
-// If you specify several tracker ids, each event will be sent to all of them.
-ym.init([98765, 4321]);
-```
-
-You can specify options for tracker (as described in [Yandex.Metrika documentation](https://help.yandex.ru/metrika/objects/creating-object.xml)):
-
-```javascript
-// by default this library specifies only tracker id
-ym.init([987654321], {defer: true});
+<YMInitializer accounts={[98765]} options={{defer: true}} />
 ```
 
 Elsewhere, use the `ym` function:
@@ -67,3 +46,9 @@ import ym from 'react-yandex-metrika';
 ym('hit', '/cart');
 ym('reachGoal', 'whateverGoal', {awesomeParameter: 42});
 ```
+
+### Migration from 1.0
+
+- Replace `import { Initializer }` to `import { YMInitializer }`.
+- Remove `ym.init()` call. Pass arguments of `ym.init` as props to the `YMInitializer` component.
+  Tracking will be initialized on `YMInitializer.componentDidMount`.

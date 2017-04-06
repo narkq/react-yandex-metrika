@@ -1,17 +1,14 @@
 /* eslint-env browser */
-/* global Ya */
 'use strict';
 
-import component from './component';
+import { CALLBACKS, ACCOUNTS, tracker } from './constants';
 
 var isBrowser = typeof window !== 'undefined';
-var c = 'yandex_metrika_callbacks';
-var a = 'yandex_metrika_accounts';
 
 function ymProxy(methodName, ...args) {
-    window[a].forEach(id => {
+    window[ACCOUNTS].forEach(id => {
         try {
-            window[`yaCounter${id}`][methodName](...args);
+            window[tracker(id)][methodName](...args);
         } catch (ex) {
             console.warn(ex);
         }
@@ -19,8 +16,8 @@ function ymProxy(methodName, ...args) {
 }
 
 function ymAsyncProxy(...args) {
-    if (window[c]) {
-        window[c].push(() => ymProxy(...args));
+    if (window[CALLBACKS]) {
+        window[CALLBACKS].push(() => ymProxy(...args));
     } else {
         ymProxy(...args);
     }
@@ -32,30 +29,5 @@ function ym(...args) {
     }
 }
 
-ym.Initializer = component;
-
-ymAsyncProxy.init = function init(accounts, options = {}) {
-    window[a] = window[a].concat(accounts);
-    window[c].push(() => {
-        window[a].forEach(id => {
-            let defaultOptions = {id};
-
-            try {
-                window[`yaCounter${id}`] = new Ya.Metrika(
-                    Object.assign(defaultOptions, options)
-                );
-            } catch (ex) {
-                console.warn(ex);
-            }
-        });
-    });
-};
-
-if (isBrowser) {
-    window[c] = window[c] || [];
-    window[a] = window[a] || [];
-    window.ym = ymAsyncProxy;
-    ym.init = ymAsyncProxy.init;
-}
-
 export default ym;
+export { YMInitializer } from './component';
