@@ -49,7 +49,7 @@ ym('reachGoal', 'whateverGoal', {awesomeParameter: 42});
 
 ### Webvisor 2.0 support
 
-See #6 for details.
+See [#6](https://github.com/narkq/react-yandex-metrika/issues/6) for details.
 ```javascript
 <YMInitializer accounts={[31337]} version="2" />
 ```
