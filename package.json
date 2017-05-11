@@ -1,6 +1,6 @@
 {
   "name": "react-yandex-metrika",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Yandex Metrika component for React",
   "main": "./lib/index.js",
   "scripts": {
@@ -18,8 +18,7 @@
   ],
   "author": "Alex Sladkov <sladkov@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.23.0",
     "babel-eslint": "^7.2.1",
