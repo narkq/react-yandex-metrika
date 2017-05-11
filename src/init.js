@@ -1,23 +1,33 @@
 /* eslint-env browser */
 /* global Ya */
 
-import { CALLBACKS, ACCOUNTS, tracker } from './constants';
+import {
+    accountListName,
+    callbackQueueName,
+    trackerConstructorName,
+    trackerInstanceName,
+    trackerVersionName
+} from './constants';
 
-export default function init(accounts, options = {}) {
-    window[CALLBACKS] = window[CALLBACKS] || [];
-    window[ACCOUNTS] = window[ACCOUNTS] || [];
-    window[ACCOUNTS] = window[ACCOUNTS].concat(accounts);
-    window[CALLBACKS].push(() => {
-        window[ACCOUNTS].forEach(id => {
+export default function init(accounts, options = {}, version = '1') {
+    let callbackQueue = callbackQueueName(version);
+    window[accountListName] = window[accountListName] || [];
+    window[accountListName] = window[accountListName].concat(accounts);
+    window[callbackQueue] = window[callbackQueue] || [];
+    window[callbackQueue].push(() => {
+        accounts.forEach(id => {
             let defaultOptions = {id};
 
             try {
-                window[tracker(id)] = new Ya.Metrika(
+                window[trackerInstanceName(id)] = new Ya[trackerConstructorName(version)](
                     Object.assign(defaultOptions, options)
                 );
             } catch (ex) {
                 console.warn(ex);
             }
         });
+    });
+    accounts.forEach(id => {
+        window[trackerVersionName(id)] = version;
     });
 };

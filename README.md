@@ -47,6 +47,13 @@ ym('hit', '/cart');
 ym('reachGoal', 'whateverGoal', {awesomeParameter: 42});
 ```
 
+### Webvisor 2.0 support
+
+See #6 for details.
+```javascript
+<YMInitializer accounts={[31337]} version="2" />
+```
+
 ### Migration from 1.0
 
 - Replace `import { Initializer }` to `import { YMInitializer }`.
