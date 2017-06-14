@@ -1,7 +1,8 @@
 /* eslint-env browser */
 'use strict';
 
-import React, { Component, DOM, PropTypes } from 'react';
+import React, { Component, DOM } from 'react';
+import PropTypes from 'prop-types';
 import init from './init';
 import { scriptPath } from './constants';
 
