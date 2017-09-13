@@ -5,22 +5,27 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import init from './init';
 import { scriptPath } from './constants';
-import DOM from 'react-dom-factories';
 
 class YMInitializer extends Component {
 
     componentDidMount() {
         init(this.props.accounts, this.props.options, this.props.version);
-        let insertPoint = document.getElementsByTagName('script')[0];
         let el = document.createElement('script');
         el.type = 'text/javascript';
         el.async = true;
         el.src = scriptPath(this.props.version);
-        insertPoint.parentNode.insertBefore(el, insertPoint);
+        this.insertPoint.insertBefore(el, null);
     }
 
     render() {
-        return this.props.children || DOM.script(null);
+        let setInsertPoint = (element) => {
+            this.insertPoint = element;
+        };
+        return React.createElement(
+            this.props.containerElement,
+            {ref: setInsertPoint},
+            this.props.children
+        );
     }
 
 }
@@ -29,11 +34,13 @@ YMInitializer.displayName = 'YMInitializer';
 
 YMInitializer.propTypes = {
     accounts: PropTypes.arrayOf(PropTypes.number).isRequired,
+    containerElement: PropTypes.string,
     options: PropTypes.object,
     version: PropTypes.oneOf(['1', '2'])
 };
 
 YMInitializer.defaultProps = {
+    containerElement: 'div',
     options: {},
     version: '1'
 };
