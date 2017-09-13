@@ -26,7 +26,8 @@
     "eslint": "^3.19.0",
     "eslint-plugin-react": "^6.10.3",
     "prop-types": "^15.5.10",
-    "react": "^15.4.2"
+    "react": "^16.0.0-rc.2",
+    "react-dom-factories": "^1.0.1"
   },
   "peerDependencies": {
     "prop-types": "*",
