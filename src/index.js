@@ -18,21 +18,28 @@ function ymProxy(id, methodName, ...args) {
     }
 }
 
-function ymAsyncProxy(...args) {
-    window[accountListName].forEach(id => {
-        let trackerVersion = window[trackerVersionName(id)];
-        let callbackQueue = window[callbackQueueName(trackerVersion)];
-        if (callbackQueue) {
-            callbackQueue.push(() => ymProxy(id, ...args));
-        } else {
-            ymProxy(id, ...args);
-        }
-    });
+function ymAsyncProxy(counterId, ...args) {
+    window[accountListName]
+        .filter(id => counterId === undefined || counterId == id)
+        .forEach(id => {
+            let trackerVersion = window[trackerVersionName(id)];
+            let callbackQueue = window[callbackQueueName(trackerVersion)];
+            if (callbackQueue) {
+                callbackQueue.push(() => ymProxy(id, ...args));
+            } else {
+                ymProxy(id, ...args);
+            }
+        });
 }
 
 function ym(...args) {
+    ym2(undefined, ...args);
+}
+
+// rename it at your discretion
+export function ym2(counterId, ...args) {
     if (isBrowser) {
-        ymAsyncProxy(...args);
+        ymAsyncProxy(counterId, ...args);
     }
 }
 
