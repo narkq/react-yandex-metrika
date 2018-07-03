@@ -18,10 +18,13 @@ function ymProxy(id, methodName, ...args) {
     }
 }
 
-function ymAsyncProxy(counterId, ...args) {
-    window[accountListName]
-        .filter(id => counterId === undefined || counterId == id)
-        .forEach(id => {
+function accountIdList() {
+    return isBrowser ? window[accountListName] : [];
+}
+
+function ymAsyncProxy(ids) {
+    return function (...args) {
+        ids.forEach(id => {
             let trackerVersion = window[trackerVersionName(id)];
             let callbackQueue = window[callbackQueueName(trackerVersion)];
             if (callbackQueue) {
@@ -30,17 +33,19 @@ function ymAsyncProxy(counterId, ...args) {
                 ymProxy(id, ...args);
             }
         });
+    };
 }
 
 function ym(...args) {
-    ym2(undefined, ...args);
+    return ymAsyncProxy(accountIdList())(...args);
 }
 
-// rename it at your discretion
-export function ym2(counterId, ...args) {
-    if (isBrowser) {
-        ymAsyncProxy(counterId, ...args);
-    }
+export function withId(counterId) {
+    return withFilter(id => counterId === id);
+}
+
+export function withFilter(f) {
+    return ymAsyncProxy(accountIdList().filter(f));
 }
 
 export default ym;
