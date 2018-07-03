@@ -3,6 +3,7 @@
   "version": "2.3.0",
   "description": "Yandex Metrika component for React",
   "main": "./lib/index.js",
+  "module": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
