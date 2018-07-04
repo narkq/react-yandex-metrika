@@ -8,8 +8,6 @@ import {
     trackerVersionName
 } from './constants';
 
-var isBrowser = typeof window !== 'undefined';
-
 function ymProxy(id, methodName, ...args) {
     try {
         window[trackerInstanceName(id)][methodName](...args);
@@ -19,7 +17,7 @@ function ymProxy(id, methodName, ...args) {
 }
 
 function accountIdList() {
-    return isBrowser ? window[accountListName] : [];
+    return typeof window !== 'undefined' ? window[accountListName] : [];
 }
 
 function ymAsyncProxy(ids) {
