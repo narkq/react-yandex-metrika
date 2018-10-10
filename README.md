@@ -26,7 +26,11 @@ class MyComponent extends React.Component {
 ```
 
 Please note that you need to initialize the tracker object only once.
-Because of that, you should insert initializer to the place where it won't be remounted (that means at least outside of router scope).
+Because of that, you should insert initializer to the place where it won't be remounted (that means at least outside of router scope).  
+If you want to use [webvisor](https://metrika.yandex.ru/promo/webvisor), you should pass `options={{webvisor: true}}` to to `YMInitializer`, for example:
+```
+<YMInitializer accounts={[987654321]} options={{webvisor: true}}/>
+```
 
 
 You can create several identical trackers (that might be useful for domain-wise segmentation).
@@ -51,7 +55,7 @@ ym('reachGoal', 'whateverGoal', {awesomeParameter: 42});
 
 See [#6](https://github.com/narkq/react-yandex-metrika/issues/6) for details.
 ```javascript
-<YMInitializer accounts={[31337]} version="2" />
+<YMInitializer accounts={[31337]} options={{webvisor: true}} version="2" />
 ```
 
 ### Migration from 1.0
