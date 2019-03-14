@@ -5,6 +5,7 @@ interface YMInitializerProps {
     containerElement?: string;
     options?: {[name: string]: any};
     version?: '1' | '2';
+    attrs?: Record<string, string | number>;
 }
 
 export class YMInitializer extends Component<YMInitializerProps> {}
