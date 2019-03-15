@@ -42,12 +42,14 @@ YMInitializer.propTypes = {
     accounts: PropTypes.arrayOf(PropTypes.number).isRequired,
     containerElement: PropTypes.string,
     options: PropTypes.object,
+    attrs: PropTypes.object,
     version: PropTypes.oneOf(['1', '2'])
 };
 
 YMInitializer.defaultProps = {
     containerElement: 'div',
     options: {},
+    attrs: {},
     version: '1'
 };
 
