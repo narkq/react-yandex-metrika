@@ -17,7 +17,8 @@ function ymProxy(id, methodName, ...args) {
 }
 
 function accountIdList() {
-    return typeof window !== 'undefined' ? window[accountListName] : [];
+    return (typeof window !== 'undefined' && window[accountListName])
+        ? window[accountListName] : [];
 }
 
 function ymAsyncProxy(ids) {
