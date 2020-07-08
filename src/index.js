@@ -9,11 +9,7 @@ import {
 } from './constants';
 
 function ymProxy(id, methodName, ...args) {
-    try {
-        window[trackerInstanceName(id)][methodName](...args);
-    } catch (ex) {
-        console.warn(ex);
-    }
+    window[trackerInstanceName(id)][methodName](...args);
 }
 
 function accountIdList() {

@@ -18,13 +18,9 @@ export default function init(accounts, options = {}, version = '1') {
         accounts.forEach(id => {
             let defaultOptions = {id};
 
-            try {
-                window[trackerInstanceName(id)] = new Ya[trackerConstructorName(version)](
-                    Object.assign(defaultOptions, options)
-                );
-            } catch (ex) {
-                console.warn(ex);
-            }
+            window[trackerInstanceName(id)] = new Ya[trackerConstructorName(version)](
+                Object.assign(defaultOptions, options)
+            );
         });
     });
     accounts.forEach(id => {
